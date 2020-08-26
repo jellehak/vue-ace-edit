@@ -1,0 +1,15 @@
+{
+  "name": "vue-ace-edit",
+  "version": "1.0.0",
+  "description": "Ace editor component for Vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "url": "https://github.com/jellehak/vue-ace-edit"
+  },
+  "keywords": ["ace","code editor"],
+  "author": "Jelle",
+  "license": "ISC"
+}
