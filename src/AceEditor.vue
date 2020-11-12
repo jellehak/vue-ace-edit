@@ -1,5 +1,11 @@
 <script>
+import AceResolver from './AceResolver.vue'
+
 export default {
+  components: {
+    AceResolver
+  },
+
   props: {
     value: { type: [Object, String], default: '' },
     mode: {
@@ -13,7 +19,8 @@ export default {
       default: 'twilight'
     },
     minHeight: { type: Number, default: 200 },
-    options: { type: Object,
+    options: {
+      type: Object,
       default: () => ({
       // selectionStyle: 'text',
       // maxLines: 30,
@@ -30,50 +37,54 @@ export default {
   },
 
   mounted () {
-    const { ace } = window
 
-    const editor = ace.edit(this.$refs.editor, {
+  },
+
+  methods: {
+    ready (ace) {
+      // const { ace } = window
+
+      const editor = ace.edit(this.$refs.editor, {
       // mode: 'ace/mode/javascript',
-      mode: `ace/mode/${this.mode}`,
-      ...this.options
-    })
+        mode: `ace/mode/${this.mode}`,
+        ...this.options
+      })
 
-    editor.setTheme(`ace/theme/${this.theme}`)
+      editor.setTheme(`ace/theme/${this.theme}`)
 
-    // Tell Vue
-    this.editor = editor
+      // Tell Vue
+      this.editor = editor
 
-    // Set initial value
-    this.setValue()
+      // Set initial value
+      this.setValue()
 
-    // Then add change handler
-    editor.on('change', this.onChange)
-    // editor.getSession().on('change', this.onChange)
+      // Then add change handler
+      editor.on('change', this.onChange)
+      // editor.getSession().on('change', this.onChange)
 
-    // Based on https://stackoverflow.com/questions/9506154/determine-if-javascript-syntax-is-valid-in-change-handler-of-ace
-    editor.on('changeMode', () => {
+      // Based on https://stackoverflow.com/questions/9506154/determine-if-javascript-syntax-is-valid-in-change-handler-of-ace
+      editor.on('changeMode', () => {
       // session.$worker is available when 'changeMode' event triggered
       // You could subscribe worker events here, whatever changes to the
       // content will trigger 'error' or 'ok' events.
 
-      // console.log('cool')
-      // editor.$worker.on('error', ko)
-      // editor.$worker.on('ok', ok)
-      const handle = (e) => {
-        const { data } = e
-        // console.log('update:annotations', e)
+        // console.log('cool')
+        // editor.$worker.on('error', ko)
+        // editor.$worker.on('ok', ok)
+        const handle = (e) => {
+          const { data } = e
+          // console.log('update:annotations', e)
 
-        this.$emit('update:annotations', data)
-        this.$emit('update:valid', data.length === 0)
-      }
+          this.$emit('update:annotations', data)
+          this.$emit('update:valid', data.length === 0)
+        }
 
-      const session = editor.getSession()
-      session.$worker.on('annotate', handle)
-      session.$worker.on('terminate', handle)
-    })
-  },
+        const session = editor.getSession()
+        session.$worker.on('annotate', handle)
+        session.$worker.on('terminate', handle)
+      })
+    },
 
-  methods: {
     setValue () {
       this.editor.setValue(this.value, 1)
     },
@@ -86,8 +97,14 @@ export default {
 </script>
 
 <template>
-  <div ref="editor" class="aceeditor" :style="`min-height:${minHeight}px`">
-    loading...
+  <div
+    ref="editor"
+    class="aceeditor"
+    :style="`min-height:${minHeight}px`"
+  >
+    <AceResolver
+      @ready="ready"
+    />
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 > Ace editor component for Vue
 
 # Roadmap
-- [ ] Option to dynamicly load the Ace assets
+- [x] Option to dynamicly load the Ace assets
 - [ ] Build version
 
 # Installation

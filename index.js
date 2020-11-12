@@ -1,7 +1,7 @@
 import { AceEditor, AceEditorJson } from './src'
 export * from './src'
 
-function plugin (Vue) {
+function plugin (Vue, config = {}) {
   Vue.component('AceEditor', AceEditor)
   Vue.component('AceEditorJson', AceEditorJson)
 }
