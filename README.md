@@ -1,12 +1,15 @@
 > Ace editor component for Vue
 
 # Roadmap
-- [ ] Option to dynamicly load the Ace assets
+- [x] Option to dynamicly load the Ace assets
 - [ ] Build version
 
 # Installation
 Install with `npm i vue-ace-edit`
-> Or clone the repo somewhere in your project
+> Or clone the repo in your project
+```
+git clone https://github.com/jellehak/vue-ace-edit
+```
 
 # Usage
 Add the CDN build of Ace to your app

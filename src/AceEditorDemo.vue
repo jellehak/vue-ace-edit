@@ -1,7 +1,7 @@
 <script>
 export default {
   data: vm => ({
-    jsonString: `{"hello":"cool"}`,
+    jsonString: '{"hello":"cool"}',
     json: {
       value: {
         hello: 'cool'
@@ -11,7 +11,7 @@ export default {
       annotations: []
     },
     html: {
-      value: `<div>Hello</div>`,
+      value: '<div>Hello</div>',
       annotations: []
     },
     themes: [
@@ -68,10 +68,16 @@ export default {
 
 <template>
   <div>
-    <div class="ace_editor_demo" style="display:flex">
+    <div
+      class="ace_editor_demo"
+      style="display:flex"
+    >
       <div>
         <h2>Javascript</h2>
-        <AceEditor ref="editor1" :value="jsonString" />
+        <AceEditor
+          ref="editor1"
+          :value="jsonString"
+        />
       </div>
 
       <div>
@@ -99,7 +105,10 @@ export default {
 
     <div class="ace_editor_demo__row">
       <h2>Themes</h2>
-      <div v-for="(theme,index) in themes" :key="index">
+      <div
+        v-for="(theme,index) in themes"
+        :key="index"
+      >
         <h2>{{ theme }}</h2>
         <AceEditor
           mode="html"
