@@ -23,14 +23,20 @@ export default {
     }
   },
 
-  watch: {
-    value () {
-      this.setValue()
-    }
-  },
+  data: vm => ({
+    disableWatcher: null
+  }),
 
   mounted () {
     const { ace } = window
+
+    // Watchers
+    this.$watch('value', newValue => {
+      if (this.disableWatcher) return
+
+      // console.log('Value change')
+      this.setValue()
+    })
 
     const editor = ace.edit(this.$refs.editor, {
       // mode: 'ace/mode/javascript',
@@ -75,20 +81,28 @@ export default {
 
   methods: {
     setValue () {
-      this.editor.setValue(this.value, 1)
+      // https://stackoverflow.com/questions/18614169/set-value-for-ace-editor-without-selecting-the-whole-editor
+      //      You can use the second parameter to control cursor position after setValue
+      // editor.setValue(str, -1) // moves cursor to the start
+      // editor.setValue(str, 1) // moves cursor to the end
+      this.editor.setValue(this.value)
     },
 
     onChange (e) {
+      this.disableWatcher = true
+      // Tell parent
       this.$emit('input', this.editor.getValue())
+
+      this.$nextTick(() => {
+        this.disableWatcher = false
+      })
     }
   }
 }
 </script>
 
 <template>
-  <div ref="editor" class="aceeditor" :style="`min-height:${minHeight}px`">
-    loading...
-  </div>
+  <div ref="editor" class="aceeditor" :style="`min-height:${minHeight}px`" />
 </template>
 
 <style>
@@ -96,6 +110,6 @@ export default {
   width: 100%;
   min-width: 200px;
   /* Fit to height */
-  height:inherit!important;
+  /* height:inherit!important; */
 }
 </style>

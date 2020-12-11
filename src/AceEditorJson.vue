@@ -45,7 +45,7 @@ export default {
         this.$emit('input', parsed)
       } catch (err) {
         // Parse failed
-        console.warn(err)
+        // console.warn(err)
         // Tell parent
         this.$emit('fail', err)
       }
