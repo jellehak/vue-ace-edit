@@ -87,9 +87,15 @@ export default {
         session.$worker.on('annotate', handle)
         session.$worker.on('terminate', handle)
       })
+
+      // Tell parent
+      this.$emit('ready', ace)
     },
 
     setValue () {
+      if (!this.editor) {
+        console.warn('Editor not ready')
+      }
       // https://stackoverflow.com/questions/18614169/set-value-for-ace-editor-without-selecting-the-whole-editor
       //      You can use the second parameter to control cursor position after setValue
       // editor.setValue(str, -1) // moves cursor to the start
