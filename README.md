@@ -17,13 +17,14 @@ Add the plugin:
 import VueAceEdit from "vue-ace-edit"
 Vue.use(VueAceEdit)
 ```
+This will add two global components: `AceEditor`, `AceEditorJson`
 
-( optional step ) Add a CDN build of the Ace library of your liking like:
+# Ace library
+If no `ace` global can be found this plugin will async load the library from `https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12`. 
+If you want your own library you can make sure the `ace` global exist by loading something from a CDN like:
 ```html
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.min.js"></script>
 ```
-
-This will add two global components: `AceEditor`, `AceEditorJson`
 
 # Components
 ## AceEditor
