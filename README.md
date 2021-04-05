@@ -12,15 +12,15 @@ git clone https://github.com/jellehak/vue-ace-edit
 ```
 
 # Usage
-Add the CDN build of Ace to your app
-```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.min.js"></script>
-```
-
 Add the plugin: 
 ```js
 import VueAceEdit from "vue-ace-edit"
 Vue.use(VueAceEdit)
+```
+
+( optional step ) Add a CDN build of the Ace library of your liking like:
+```html
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.min.js"></script>
 ```
 
 This will add two global components: `AceEditor`, `AceEditorJson`
