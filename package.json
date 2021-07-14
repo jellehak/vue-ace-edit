@@ -1,10 +1,9 @@
 {
   "name": "vue-ace-edit",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Ace editor component for Vue",
   "main": "index.js",
   "scripts": {
-    "build": "npx rollup -c"
   },
   "repository": {
     "url": "https://github.com/jellehak/vue-ace-edit"

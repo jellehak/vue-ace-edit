@@ -1,9 +1,5 @@
 > Ace editor component for Vue
 
-# Roadmap
-- [x] Option to dynamicly load the Ace assets
-- [ ] Build version
-
 # Installation
 Install with `npm i vue-ace-edit`
 > Or clone the repo in your project
@@ -36,5 +32,3 @@ Wrapper component that encode/ decodes JSON objects
 ```html
 <AceEditorJson :value="{hello:'cool'}" />
 ```
-
-> See `AceEditorDemo.vue` for more usage examples
