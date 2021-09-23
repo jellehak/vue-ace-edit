@@ -1,5 +1,7 @@
 > Ace editor component for Vue
 
+[!["npm link"](https://img.shields.io/npm/v/vue-ace-edit.svg)](https://www.npmjs.com/package/vue-ace-edit)
+
 # Installation
 Install with `npm i vue-ace-edit`
 > Or clone the repo in your project
