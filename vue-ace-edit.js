@@ -80,7 +80,6 @@ export const AceEditor = {
     this.$watch('value', newValue => {
       if (this.disableWatcher) return
 
-      // console.log('Value change')
       this.setValue()
     })
   },
@@ -89,8 +88,6 @@ export const AceEditor = {
     let editor
 
     this.ready = (ace) => {
-      // const { ace } = window
-
       editor = ace.edit(this.$refs.editor, {
         // mode: 'ace/mode/javascript',
         mode: `ace/mode/${this.mode}`,
@@ -98,13 +95,6 @@ export const AceEditor = {
       })
 
       editor.setTheme(`ace/theme/${this.theme}`)
-
-      // Tell Vue
-      // this.editor = editor
-
-      // Set initial value
-      // this.setValue()
-      editor.setValue(this.value, -1)
 
       // Then add change handler
       editor.on('change', this.onChange)
@@ -116,7 +106,6 @@ export const AceEditor = {
         // You could subscribe worker events here, whatever changes to the
         // content will trigger 'error' or 'ok' events.
 
-        // console.log('cool')
         // editor.$worker.on('error', ko)
         // editor.$worker.on('ok', ok)
         const handle = (e) => {
@@ -146,6 +135,7 @@ export const AceEditor = {
       // editor.setValue(str, -1) // moves cursor to the start
       // editor.setValue(str, 1) // moves cursor to the end
       editor.setValue(this.value)
+      editor.clearSelection() // This will remove the highlight over the text
     }
 
     this.onChange = (e) => {
@@ -186,8 +176,6 @@ export const AceEditorJson = {
   }),
 
   created () {
-    // this.format()
-
     // Detect incoming change
     this.$watch('value',
       (newValue) => {
@@ -198,8 +186,9 @@ export const AceEditorJson = {
 
         // Detect change
         this.disableInputEmit = true
-        // console.log('Change', newValue)
+
         this.format()
+
         this.$nextTick(function () {
           this.disableInputEmit = false
         })
@@ -223,7 +212,7 @@ export const AceEditorJson = {
         this.$emit('input', parsed)
       } catch (err) {
         // Parse failed
-        // console.warn(err)
+
         // Tell parent
         this.$emit('fail', err)
       }
