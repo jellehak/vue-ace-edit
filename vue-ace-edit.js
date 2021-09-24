@@ -80,7 +80,7 @@ export const AceEditor = {
     this.$watch('value', newValue => {
       if (this.disableWatcher) return
 
-      this.setValue()
+      this.setValue(newValue)
     })
   },
 
@@ -96,9 +96,11 @@ export const AceEditor = {
 
       editor.setTheme(`ace/theme/${this.theme}`)
 
+      // Set initial value
+      this.setValue(this.value)
+
       // Then add change handler
       editor.on('change', this.onChange)
-      // editor.getSession().on('change', this.onChange)
 
       // Based on https://stackoverflow.com/questions/9506154/determine-if-javascript-syntax-is-valid-in-change-handler-of-ace
       editor.on('changeMode', () => {
@@ -125,7 +127,7 @@ export const AceEditor = {
       this.$emit('ready', ace)
     }
 
-    this.setValue = () => {
+    this.setValue = (value) => {
       if (!editor) {
         console.warn('Editor not ready')
         return
@@ -134,7 +136,7 @@ export const AceEditor = {
       //      You can use the second parameter to control cursor position after setValue
       // editor.setValue(str, -1) // moves cursor to the start
       // editor.setValue(str, 1) // moves cursor to the end
-      editor.setValue(this.value)
+      editor.setValue(value)
       editor.clearSelection() // This will remove the highlight over the text
     }
 
