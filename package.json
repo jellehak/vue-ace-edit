@@ -3,6 +3,9 @@
   "version": "1.0.7",
   "description": "Ace editor component for Vue",
   "main": "index.js",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
   "scripts": {
   },
   "repository": {
